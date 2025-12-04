@@ -3,6 +3,9 @@
 <div class="aba-numeros">
     <h2>Sorteio por Números</h2>
     <p>Digite o intervalo de números para o sorteio.</p>
+    
+    <label for="titulo_sorteio_numeros">Título do Sorteio:</label><br>
+    <input id="titulo_sorteio_numeros" type="text" placeholder="Ex: Sorteio Rifa 2025"><br><br>
 
     <label for="numero_min">Número mínimo:</label><br>
     <input id="numero_min" type="number" min="0" value="1"><br><br>
@@ -26,6 +29,9 @@
 <script id="template-nomes" type="text/template">
     <h2>Sorteio por Nomes</h2>
     <p>Digite nomes separados por vírgula.</p>
+    
+    <label for="titulo_sorteio_nomes">Título do Sorteio:</label><br>
+    <input id="titulo_sorteio_nomes" type="text" placeholder="Ex: Sorteio da Turma"><br><br>
 
     <label for="input_items">Nomes:</label><br>
     <textarea id="input_items" rows="3" placeholder="ex: João, Maria, Pedro"></textarea><br><br>

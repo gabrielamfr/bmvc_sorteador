@@ -79,6 +79,16 @@ function carregarConteudoAba(abaId) {
 
 }
 
+function getTituloNomes() {
+    const el = document.getElementById('titulo_sorteio_nomes');
+    return el ? el.value.trim() : '';
+}
+
+function getTituloNumeros() {
+    const el = document.getElementById('titulo_sorteio_numeros');
+    return el ? el.value.trim() : '';
+}
+
 function inicializarSorteioNumeros() {
     console.log('INICIALIZANDO SORTEIO DE NÚMEROS');
     
@@ -92,7 +102,6 @@ function inicializarSorteioNumeros() {
         resultadoNumeros: !!resultadoNumeros
     });
 
-    // ✅ Evita adicionar o mesmo listener mais de uma vez
     if (btnSortearNumeros && resultadoNumeros && !btnSortearNumeros.dataset.listenerAdded) {
         btnSortearNumeros.addEventListener('click', function() {
             console.log('Botão de números CLICADO!');
@@ -123,21 +132,23 @@ function inicializarSorteioNumeros() {
             }
 
             console.log('Números sorteados:', numeros);
-            resultadoNumeros.textContent = numeros.join(', ');
-            
+            const titulo = getTituloNumeros();
+            resultadoNumeros.innerHTML = titulo
+                ? `<strong>${titulo}:</strong> ${numeros.join(', ')}`
+                : numeros.join(', ');
+  
             numeros.forEach(num => {
                 console.log('Adicionando ao histórico:', num);
-                pushHistory(num.toString());
+                const titulo = getTituloNumeros();
+                pushHistory(titulo ? `${titulo}: ${num}` : num.toString());
             });
             renderHistory();
         });
 
-        // ✅ Marca que o listener já foi adicionado
         btnSortearNumeros.dataset.listenerAdded = 'true';
         console.log('Listener do sorteio de números adicionado com sucesso!');
     }
 
-    // ✅ Mesma proteção para o botão de limpar
     if (btnClearNumeros && !btnClearNumeros.dataset.listenerAdded) {
         btnClearNumeros.textContent = 'Limpar Histórico';
         
@@ -146,10 +157,8 @@ function inicializarSorteioNumeros() {
                 localStorage.removeItem('sorteio_history');
                 renderHistory();
 
-                // limpa a área de resultado atual
                 if (resultadoNumeros) resultadoNumeros.textContent = '';
 
-                // 🔹 limpa o gráfico, se a aba estiver aberta
                 const graficoDiv = document.getElementById('grafico_simples');
                 const statsDiv = document.getElementById('dados_estatisticas');
                 if (graficoDiv && statsDiv) {
@@ -207,11 +216,15 @@ function inicializarSorteioNomes() {
             }
 
             console.log('Vencedores:', winners);
-            resultadoBox.textContent = winners.join(', ');
-            
+            const titulo = getTituloNomes();
+            resultadoBox.innerHTML = titulo 
+                ? `<strong>${titulo}:</strong> ${winners.join(', ')}`
+                : winners.join(', ');
+
             winners.forEach(w => {
                 console.log('Adicionando ao histórico:', w);
-                pushHistory(w);
+                const titulo = getTituloNomes();
+                pushHistory(titulo ? `${titulo}: ${w}` : w);
             });
             
             renderHistory();

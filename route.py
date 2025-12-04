@@ -2,7 +2,6 @@ from bottle import Bottle, run, static_file
 import bottle, os
 from app.controllers.application import Application
 
-# garante caminho absoluto das views
 bottle.TEMPLATE_PATH = [os.path.join(os.path.dirname(__file__), 'app', 'views')]
 
 app = Bottle()
