@@ -53,6 +53,7 @@
         </nav>
     </header>
 
+<<<<<<< HEAD
     <main class="container">
         <div class="abas">
             <button class="aba-link active" onclick="mostrarAba('numeros')">
@@ -65,6 +66,14 @@
                 Gráfico e Estatísticas
             </button>
         </div>
+=======
+<div class="aba-numeros">
+    <h2>Sorteio por Números</h2>
+    <p>Digite o intervalo de números para o sorteio.</p>
+    
+    <label for="titulo_sorteio_numeros">Título do Sorteio:</label><br>
+    <input id="titulo_sorteio_numeros" type="text" placeholder="Ex: Sorteio Rifa 2025"><br><br>
+>>>>>>> 10979b95a66933193047f60dad4a77fbe729b641
 
         <section id="tab_numeros" class="tabcontent">
             <h2>Sorteio por Números</h2>
@@ -90,8 +99,17 @@
                     % end
                 </div>
 
+<<<<<<< HEAD
                 <div style="flex:1;">
                     <div id="resultado_numeros" style="margin-top:5px; padding:8px; border:1px solid #ddd; border-radius:6px; min-height:48px;"></div>
+=======
+<script id="template-nomes" type="text/template">
+    <h2>Sorteio por Nomes</h2>
+    <p>Digite nomes separados por vírgula.</p>
+    
+    <label for="titulo_sorteio_nomes">Título do Sorteio:</label><br>
+    <input id="titulo_sorteio_nomes" type="text" placeholder="Ex: Sorteio da Turma"><br><br>
+>>>>>>> 10979b95a66933193047f60dad4a77fbe729b641
 
                     <div class="historico-header">
                         <h3 style="margin:0;">Histórico (Números)</h3>
@@ -139,6 +157,7 @@
             </div>
         </section>
 
+<<<<<<< HEAD
         <section id="tab_grafico" class="tabcontent">
             <h2>Gráficos e Estatísticas</h2>
 
@@ -547,3 +566,6 @@
     </script>
 </body>
 </html>
+=======
+
+>>>>>>> 10979b95a66933193047f60dad4a77fbe729b641
