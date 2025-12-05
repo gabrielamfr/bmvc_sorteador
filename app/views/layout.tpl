@@ -6,14 +6,6 @@
     <title>{{titulo}}</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<script>
-    console.log('Layout carregado - verificando JavaScript...');
-</script>
-<script src="/static/js/script.js"></script>
-<script>
-    console.log('Script.js carregado - verificando funções...');
-    console.log('abrirAba existe?', typeof abrirAba);
-</script>
 <body>
     <header class="site-header">
         <h1>Sorteador</h1>
@@ -24,19 +16,19 @@
 
     <main class="container">
         <div class="abas">
-            <button class="aba-link active" onclick="abrirAba(event, 'sorteio-numeros')">Sorteio por Números</button>
-            <button class="aba-link" onclick="abrirAba(event, 'sorteio-nomes')">Sorteio por Nomes</button>
-            <button class="aba-link" onclick="abrirAba(event, 'grafico')">Gráfico e Estatísticas</button>
+            <button class="aba-link active" id="btn-numeros" onclick="mostrarAba('numeros')">
+                Sorteio por Números
+            </button>
+            <button class="aba-link" id="btn-nomes" onclick="mostrarAba('nomes')">
+                Sorteio por Nomes
+            </button>
+            <button class="aba-link" id="btn-grafico" onclick="mostrarAba('grafico')">
+                Gráfico e Estatísticas
+            </button>
         </div>
 
-        <div id="sorteio-numeros" class="aba-conteudo active">
-            {{!base}}
-        </div>
-
-        <div id="sorteio-nomes" class="aba-conteudo">
-        </div>
-
-        <div id="grafico" class="aba-conteudo">
+        <div id="conteudo-dinamico">
+            <!-- O conteúdo será carregado aqui -->
         </div>
     </main>
 
@@ -44,6 +36,24 @@
         <p>© 2025 - Projeto BMVC Sorteador (Arthur e Gabriela)</p>
     </footer>
 
+    <script>
+    function mostrarAba(aba) {
+        document.querySelectorAll('.aba-link').forEach(b => b.classList.remove('active'));
+         document.getElementById('btn-' + aba).classList.add('active');
+        
+        if (document.getElementById('tab_numeros')) {
+            document.querySelectorAll('.tabcontent').forEach(s => s.style.display = 'none');
+            document.getElementById('tab_' + aba).style.display = 'block';
+            
+            if (aba === 'grafico' && typeof renderCharts === 'function') {
+                renderCharts();
+            }
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        mostrarAba('numeros');
+    });
+    </script>
     <script src="/static/js/script.js"></script>
 </body>
 </html>
